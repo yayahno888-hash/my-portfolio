@@ -295,7 +295,9 @@ function getStoredValue(key, defaultValue) {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('Portfolio translations loaded');
   const savedLang = getStoredValue('lang', 'en');
+  console.log('Saved language:', savedLang);
   
   // Apply saved language
   updateTranslations(savedLang);
@@ -304,15 +306,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const langSelect = document.getElementById('lang-select');
   if (langSelect) {
     langSelect.value = savedLang;
+    console.log('Select found, value set to:', savedLang);
+  } else {
+    console.error('lang-select not found!');
   }
   
   // Listen for language change - RELOAD PAGE
-  langSelect?.addEventListener('change', (e) => {
-    const newLang = e.target.value;
-    storeValue('lang', newLang);
-    // Reload page to apply new language
-    window.location.reload();
-  });
+  if (langSelect) {
+    langSelect.addEventListener('change', (e) => {
+      const newLang = e.target.value;
+      console.log('Language changed to:', newLang);
+      storeValue('lang', newLang);
+      console.log('Reloading page...');
+      // Reload page to apply new language
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
+    });
+  }
 });
 const translations = {
   en: {
