@@ -276,20 +276,30 @@ function applyTranslations(lang) {
 
 // Initialize language system
 function initLanguage() {
-  const langSelect = document.getElementById('lang-select');
+  const langButtons = document.querySelectorAll('.lang-btn');
   const savedLang = localStorage.getItem('language') || 'en';
   
-  // Set saved language
-  langSelect.value = savedLang;
+  // Set active button
+  langButtons.forEach(btn => {
+    if (btn.dataset.lang === savedLang) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+  
+  // Apply saved language
   applyTranslations(savedLang);
   
   // Listen for language change - reload page on change
-  langSelect.addEventListener('change', (e) => {
-    const newLang = e.target.value;
-    localStorage.setItem('language', newLang);
-    
-    // Reload page to apply new language
-    window.location.reload();
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const newLang = btn.dataset.lang;
+      if (newLang !== savedLang) {
+        localStorage.setItem('language', newLang);
+        window.location.reload();
+      }
+    });
   });
 }
 
