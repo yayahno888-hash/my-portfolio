@@ -306,11 +306,12 @@ document.addEventListener('DOMContentLoaded', () => {
     langSelect.value = savedLang;
   }
   
-  // Listen for language change
+  // Listen for language change - RELOAD PAGE
   langSelect?.addEventListener('change', (e) => {
     const newLang = e.target.value;
-    updateTranslations(newLang);
     storeValue('lang', newLang);
+    // Reload page to apply new language
+    window.location.reload();
   });
 });
 const translations = {
