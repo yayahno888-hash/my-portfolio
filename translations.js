@@ -246,20 +246,17 @@ const translations = {
   }
 };
 
-// Helper function to get translation by key path
+// Get translation - like Natafit
 function getTranslation(key, lang) {
   const keys = key.split('.');
-  let value = translations[lang];
+  let translation = translations[lang];
   
   for (const k of keys) {
-    if (value && value[k] !== undefined) {
-      value = value[k];
-    } else {
-      return null;
-    }
+    translation = translation?.[k];
+    if (!translation) return null;
   }
   
-  return value;
+  return translation;
 }
 
 // Apply translations to page
@@ -295,9 +292,7 @@ function getStoredValue(key, defaultValue) {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Portfolio translations loaded');
   const savedLang = getStoredValue('lang', 'en');
-  console.log('Saved language:', savedLang);
   
   // Apply saved language
   updateTranslations(savedLang);
@@ -306,22 +301,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const langSelect = document.getElementById('lang-select');
   if (langSelect) {
     langSelect.value = savedLang;
-    console.log('Select found, value set to:', savedLang);
-  } else {
-    console.error('lang-select not found!');
   }
   
-  // Listen for language change - RELOAD PAGE
-  if (langSelect) {
-    langSelect.addEventListener('change', (e) => {
-      const newLang = e.target.value;
-      console.log('Language changed to:', newLang);
-      storeValue('lang', newLang);
-      console.log('Reloading page...');
-      // Reload page to apply new language
-      setTimeout(() => {
-        window.location.reload();
-      }, 100);
-    });
-  }
+  // Change language without reload
+  langSelect?.addEventListener('change', (e) => {
+    updateTranslations(e.target.value);
+    storeValue('lang', e.target.value);
+  });
 });
