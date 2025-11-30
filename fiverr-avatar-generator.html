@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiverr Avatar Generator - 400x400</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .controls {
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        label {
+            font-weight: 600;
+            color: #444;
+            min-width: 100px;
+            text-align: right;
+        }
+
+        input[type="text"], input[type="color"] {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"] {
+            width: 200px;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #7c3aed;
+        }
+
+        input[type="color"] {
+            width: 80px;
+            height: 45px;
+            cursor: pointer;
+        }
+
+        select {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            background: white;
+        }
+
+        #avatarCanvas {
+            border: 3px solid #7c3aed;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+            margin: 20px 0;
+        }
+
+        .button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 10px;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.4);
+        }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        .info {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .icon-option {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Fiverr Avatar Generator</h1>
+        <p class="subtitle">Create a professional 400×400 avatar for your Fiverr profile</p>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="initials">Initials:</label>
+                <input type="text" id="initials" value="KY" maxlength="3" placeholder="e.g., KY">
+            </div>
+
+            <div class="control-group">
+                <label for="bgColor">Background:</label>
+                <input type="color" id="bgColor" value="#7c3aed">
+            </div>
+
+            <div class="control-group">
+                <label for="textColor">Text Color:</label>
+                <input type="color" id="textColor" value="#ffffff">
+            </div>
+
+            <div class="control-group">
+                <label for="style">Style:</label>
+                <select id="style">
+                    <option value="gradient">Gradient Background</option>
+                    <option value="solid">Solid Background</option>
+                    <option value="circle">Circle Design</option>
+                    <option value="icon">Code Icon</option>
+                </select>
+            </div>
+        </div>
+
+        <canvas id="avatarCanvas" width="400" height="400"></canvas>
+
+        <div>
+            <button class="button" onclick="updateAvatar()">🔄 Update</button>
+            <button class="button" onclick="downloadAvatar()">💾 Download Avatar</button>
+        </div>
+
+        <div class="info">
+            <strong>📌 Instructions:</strong><br>
+            1. Customize your initials, colors, and style<br>
+            2. Click "Update" to preview changes<br>
+            3. Click "Download Avatar" to save as PNG<br>
+            4. Upload to your Fiverr profile (400×400px perfect size!)
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('avatarCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function drawGradientBackground(color) {
+            const gradient = ctx.createLinearGradient(0, 0, 400, 400);
+            const rgb = hexToRgb(color);
+            gradient.addColorStop(0, color);
+            gradient.addColorStop(1, `rgb(${Math.max(0, rgb.r - 40)}, ${Math.max(0, rgb.g - 40)}, ${Math.max(0, rgb.b - 40)})`);
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 400, 400);
+        }
+
+        function drawSolidBackground(color) {
+            ctx.fillStyle = color;
+            ctx.fillRect(0, 0, 400, 400);
+        }
+
+        function drawCircleDesign(bgColor, textColor) {
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, 400, 400);
+            
+            ctx.fillStyle = textColor;
+            ctx.globalAlpha = 0.1;
+            for (let i = 0; i < 5; i++) {
+                ctx.beginPath();
+                ctx.arc(200, 200, 80 + (i * 30), 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.lineWidth = 2;
+            }
+            ctx.globalAlpha = 1;
+        }
+
+        function drawCodeIcon(bgColor, textColor) {
+            drawGradientBackground(bgColor);
+            
+            ctx.fillStyle = textColor;
+            ctx.font = 'bold 120px monospace';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('</>', 200, 200);
+        }
+
+        function drawInitials(text, color) {
+            ctx.fillStyle = color;
+            ctx.font = 'bold 140px Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text.toUpperCase(), 200, 210);
+        }
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
+        function updateAvatar() {
+            const initials = document.getElementById('initials').value || 'KY';
+            const bgColor = document.getElementById('bgColor').value;
+            const textColor = document.getElementById('textColor').value;
+            const style = document.getElementById('style').value;
+
+            ctx.clearRect(0, 0, 400, 400);
+
+            switch(style) {
+                case 'gradient':
+                    drawGradientBackground(bgColor);
+                    drawInitials(initials, textColor);
+                    break;
+                case 'solid':
+                    drawSolidBackground(bgColor);
+                    drawInitials(initials, textColor);
+                    break;
+                case 'circle':
+                    drawCircleDesign(bgColor, textColor);
+                    drawInitials(initials, textColor);
+                    break;
+                case 'icon':
+                    drawCodeIcon(bgColor, textColor);
+                    break;
+            }
+        }
+
+        function downloadAvatar() {
+            const link = document.createElement('a');
+            link.download = 'fiverr-avatar-400x400.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Auto-update on input change
+        document.getElementById('initials').addEventListener('input', updateAvatar);
+        document.getElementById('bgColor').addEventListener('input', updateAvatar);
+        document.getElementById('textColor').addEventListener('input', updateAvatar);
+        document.getElementById('style').addEventListener('change', updateAvatar);
+
+        // Initial render
+        updateAvatar();
+    </script>
+</body>
+</html>

@@ -13,10 +13,14 @@
       <nav class="nav">
         <a href="#hero" class="logo">💻 WebDev</a>
         <div class="nav-links">
-          <a href="#portfolio">Portfolio</a>
-          <a href="#services">Services</a>
-          <a href="#prices">Pricing</a>
-          <a href="#contact">Contact</a>
+          <a href="#portfolio" data-translate="nav.portfolio">Portfolio</a>
+          <a href="#services" data-translate="nav.services">Services</a>
+          <a href="#prices" data-translate="nav.pricing">Pricing</a>
+          <a href="#contact" data-translate="nav.contact">Contact</a>
+          <select id="lang-select" class="lang-select">
+            <option value="en">🇬🇧 EN</option>
+            <option value="de">🇩🇪 DE</option>
+          </select>
         </div>
       </nav>
     </div>
@@ -26,13 +30,13 @@
   <section id="hero" class="hero">
     <div class="container">
       <div class="hero-content">
-        <h1 class="hero-title">🚀 I Create Modern Websites</h1>
-        <p class="hero-subtitle">
+        <h1 class="hero-title" data-translate="hero.title">🚀 I Create Modern Websites</h1>
+        <p class="hero-subtitle" data-translate="hero.subtitle">
           Responsive Design • API Integration • Animations • SEO Optimization
         </p>
         <div class="hero-buttons">
-          <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
-          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+          <a href="#portfolio" class="btn btn-primary" data-translate="hero.btn1">View Portfolio</a>
+          <a href="#contact" class="btn btn-secondary" data-translate="hero.btn2">Contact Me</a>
         </div>
       </div>
     </div>
@@ -44,19 +48,19 @@
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-number">100%</div>
-          <div class="stat-label">Responsive</div>
+          <div class="stat-label" data-translate="stats.responsive">Responsive</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">⚡</div>
-          <div class="stat-label">Fast Loading</div>
+          <div class="stat-label" data-translate="stats.fast">Fast Loading</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">🎯</div>
-          <div class="stat-label">SEO Optimized</div>
+          <div class="stat-label" data-translate="stats.seo">SEO Optimized</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">24/7</div>
-          <div class="stat-label">Support</div>
+          <div class="stat-label" data-translate="stats.support">Support</div>
         </div>
       </div>
     </div>
@@ -65,15 +69,15 @@
   <!-- Portfolio Section -->
   <section id="portfolio" class="portfolio">
     <div class="container">
-      <h2 class="section-title">💼 My Work</h2>
+      <h2 class="section-title" data-translate="portfolio.title">💼 My Work</h2>
       
       <div class="project-card">
         <div class="project-header">
           <div>
-            <h3 class="project-title">🏋️ Natafit Fitness Website</h3>
-            <p class="project-desc">Website for a personal fitness trainer with booking form and Telegram integration</p>
+            <h3 class="project-title" data-translate="portfolio.natafit.title">🏋️ Natafit Fitness Website</h3>
+            <p class="project-desc" data-translate="portfolio.natafit.desc">Website for a personal fitness trainer with booking form and Telegram integration</p>
           </div>
-          <a href="https://yayahno888-hash.github.io/natafit-site/" target="_blank" class="project-link">
+          <a href="https://yayahno888-hash.github.io/natafit-site/" target="_blank" class="project-link" data-translate="portfolio.natafit.link">
             🔗 Open Website →
           </a>
         </div>
@@ -84,53 +88,53 @@
           </div>
         </div>
 
-        <h4 class="features-title">✨ Features:</h4>
+        <h4 class="features-title" data-translate="portfolio.features">✨ Features:</h4>
         <div class="features-grid">
           <div class="feature">
             <span class="feature-icon">📝</span>
             <div>
-              <strong>Booking Form</strong>
-              <span>With Telegram integration</span>
+              <strong data-translate="portfolio.feature1.title">Booking Form</strong>
+              <span data-translate="portfolio.feature1.desc">With Telegram integration</span>
             </div>
           </div>
           <div class="feature">
             <span class="feature-icon">💬</span>
             <div>
-              <strong>Testimonials</strong>
-              <span>With ratings & animation</span>
+              <strong data-translate="portfolio.feature2.title">Testimonials</strong>
+              <span data-translate="portfolio.feature2.desc">With ratings & animation</span>
             </div>
           </div>
           <div class="feature">
             <span class="feature-icon">📱</span>
             <div>
-              <strong>Responsive Design</strong>
-              <span>All devices</span>
+              <strong data-translate="portfolio.feature3.title">Responsive Design</strong>
+              <span data-translate="portfolio.feature3.desc">All devices</span>
             </div>
           </div>
           <div class="feature">
             <span class="feature-icon">🌙</span>
             <div>
-              <strong>Dark Theme</strong>
-              <span>Theme switcher</span>
+              <strong data-translate="portfolio.feature4.title">Dark Theme</strong>
+              <span data-translate="portfolio.feature4.desc">Theme switcher</span>
             </div>
           </div>
           <div class="feature">
             <span class="feature-icon">🌍</span>
             <div>
-              <strong>3 Languages</strong>
-              <span>RU / EN / DE</span>
+              <strong data-translate="portfolio.feature5.title">3 Languages</strong>
+              <span data-translate="portfolio.feature5.desc">RU / EN / DE</span>
             </div>
           </div>
           <div class="feature">
             <span class="feature-icon">⚡</span>
             <div>
-              <strong>Fast Loading</strong>
-              <span>Optimized</span>
+              <strong data-translate="portfolio.feature6.title">Fast Loading</strong>
+              <span data-translate="portfolio.feature6.desc">Optimized</span>
             </div>
           </div>
         </div>
 
-        <h4 class="features-title">🛠 Technologies:</h4>
+        <h4 class="features-title" data-translate="portfolio.tech">🛠 Technologies:</h4>
         <div class="tech-stack">
           <span class="tech-badge">HTML5</span>
           <span class="tech-badge">CSS3</span>
@@ -148,42 +152,42 @@
   <!-- Services Section -->
   <section id="services" class="services">
     <div class="container">
-      <h2 class="section-title">🎯 What I Offer</h2>
+      <h2 class="section-title" data-translate="services.title">🎯 What I Offer</h2>
       <div class="services-grid">
         <div class="service-card">
           <div class="service-icon">💰</div>
-          <h3>Landing Page</h3>
-          <p>Single-page website to sell your product or service</p>
+          <h3 data-translate="services.landing.title">Landing Page</h3>
+          <p data-translate="services.landing.desc">Single-page website to sell your product or service</p>
           <ul>
-            <li>✅ Responsive design</li>
-            <li>✅ Contact form</li>
-            <li>✅ Animations</li>
-            <li>✅ SEO optimization</li>
+            <li data-translate="services.landing.item1">✅ Responsive design</li>
+            <li data-translate="services.landing.item2">✅ Contact form</li>
+            <li data-translate="services.landing.item3">✅ Animations</li>
+            <li data-translate="services.landing.item4">✅ SEO optimization</li>
           </ul>
         </div>
         
         <div class="service-card featured">
-          <div class="badge">Popular</div>
+          <div class="badge" data-translate="services.badge">Popular</div>
           <div class="service-icon">🏢</div>
-          <h3>Business Website</h3>
-          <p>Multi-page website for your company or business</p>
+          <h3 data-translate="services.business.title">Business Website</h3>
+          <p data-translate="services.business.desc">Multi-page website for your company or business</p>
           <ul>
-            <li>✅ 3-5 pages</li>
-            <li>✅ Forms & integrations</li>
-            <li>✅ Dark theme</li>
-            <li>✅ Multilingual</li>
+            <li data-translate="services.business.item1">✅ 3-5 pages</li>
+            <li data-translate="services.business.item2">✅ Forms & integrations</li>
+            <li data-translate="services.business.item3">✅ Dark theme</li>
+            <li data-translate="services.business.item4">✅ Multilingual</li>
           </ul>
         </div>
         
         <div class="service-card">
           <div class="service-icon">🔧</div>
-          <h3>Website Improvements</h3>
-          <p>Fixes, adding features, optimization of existing website</p>
+          <h3 data-translate="services.improvements.title">Website Improvements</h3>
+          <p data-translate="services.improvements.desc">Fixes, adding features, optimization of existing website</p>
           <ul>
-            <li>✅ Bug fixes</li>
-            <li>✅ New features</li>
-            <li>✅ Design improvements</li>
-            <li>✅ Speed optimization</li>
+            <li data-translate="services.improvements.item1">✅ Bug fixes</li>
+            <li data-translate="services.improvements.item2">✅ New features</li>
+            <li data-translate="services.improvements.item3">✅ Design improvements</li>
+            <li data-translate="services.improvements.item4">✅ Speed optimization</li>
           </ul>
         </div>
       </div>
@@ -193,43 +197,43 @@
   <!-- Prices Section -->
   <section id="prices" class="prices">
     <div class="container">
-      <h2 class="section-title">💸 Pricing</h2>
+      <h2 class="section-title" data-translate="pricing.title">💸 Pricing</h2>
       <div class="price-grid">
         <div class="price-card">
-          <h3>Landing Page</h3>
-          <div class="price">from $49</div>
-          <div class="price-period">Delivery: 3 days</div>
+          <h3 data-translate="pricing.landing.title">Landing Page</h3>
+          <div class="price" data-translate="pricing.landing.price">from $49</div>
+          <div class="price-period" data-translate="pricing.landing.delivery">Delivery: 3 days</div>
           <ul class="price-features">
-            <li>✅ 1 page</li>
-            <li>✅ Responsive design</li>
-            <li>✅ Contact form</li>
-            <li>✅ Basic SEO</li>
+            <li data-translate="pricing.landing.item1">✅ 1 page</li>
+            <li data-translate="pricing.landing.item2">✅ Responsive design</li>
+            <li data-translate="pricing.landing.item3">✅ Contact form</li>
+            <li data-translate="pricing.landing.item4">✅ Basic SEO</li>
           </ul>
         </div>
         
         <div class="price-card featured">
-          <div class="badge">Recommended</div>
-          <h3>Business Website</h3>
-          <div class="price">from $99</div>
-          <div class="price-period">Delivery: 5 days</div>
+          <div class="badge" data-translate="pricing.badge">Recommended</div>
+          <h3 data-translate="pricing.business.title">Business Website</h3>
+          <div class="price" data-translate="pricing.business.price">from $99</div>
+          <div class="price-period" data-translate="pricing.business.delivery">Delivery: 5 days</div>
           <ul class="price-features">
-            <li>✅ 3-5 pages</li>
-            <li>✅ Modern design</li>
-            <li>✅ All forms</li>
-            <li>✅ Full SEO</li>
-            <li>✅ 2 weeks support</li>
+            <li data-translate="pricing.business.item1">✅ 3-5 pages</li>
+            <li data-translate="pricing.business.item2">✅ Modern design</li>
+            <li data-translate="pricing.business.item3">✅ All forms</li>
+            <li data-translate="pricing.business.item4">✅ Full SEO</li>
+            <li data-translate="pricing.business.item5">✅ 2 weeks support</li>
           </ul>
         </div>
         
         <div class="price-card">
-          <h3>Improvements</h3>
-          <div class="price">from $29</div>
-          <div class="price-period">Delivery: 2 days</div>
+          <h3 data-translate="pricing.improvements.title">Improvements</h3>
+          <div class="price" data-translate="pricing.improvements.price">from $29</div>
+          <div class="price-period" data-translate="pricing.improvements.delivery">Delivery: 2 days</div>
           <ul class="price-features">
-            <li>✅ Bug fixes</li>
-            <li>✅ New features</li>
-            <li>✅ Optimization</li>
-            <li>✅ Consultation</li>
+            <li data-translate="pricing.improvements.item1">✅ Bug fixes</li>
+            <li data-translate="pricing.improvements.item2">✅ New features</li>
+            <li data-translate="pricing.improvements.item3">✅ Optimization</li>
+            <li data-translate="pricing.improvements.item4">✅ Consultation</li>
           </ul>
         </div>
       </div>
@@ -240,8 +244,8 @@
   <section id="contact" class="contact">
     <div class="container">
       <div class="contact-content">
-        <h2 class="section-title">📩 Get in Touch</h2>
-        <p class="contact-text">
+        <h2 class="section-title" data-translate="contact.title">📩 Get in Touch</h2>
+        <p class="contact-text" data-translate="contact.text">
           Ready to discuss your project! I respond quickly and work with quality
         </p>
         <div class="contact-buttons">
@@ -259,11 +263,11 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2024 WebDev Portfolio. All rights reserved.</p>
-      <p class="footer-tech">Made with ❤️ and code</p>
+      <p data-translate="footer.rights">&copy; 2024 WebDev Portfolio. All rights reserved.</p>
+      <p class="footer-tech" data-translate="footer.made">Made with ❤️ and code</p>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="translations.js"></script>
 </body>
 </html>

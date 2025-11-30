@@ -55,6 +55,7 @@ body {
 .nav-links {
   display: flex;
   gap: 30px;
+  align-items: center;
 }
 
 .nav-links a {
@@ -66,6 +67,30 @@ body {
 
 .nav-links a:hover {
   color: var(--primary);
+}
+
+/* Language Selector */
+.lang-select {
+  padding: 8px 12px;
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  background: white;
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 14px;
+}
+
+.lang-select:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.lang-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
 }
 
 /* Hero */
