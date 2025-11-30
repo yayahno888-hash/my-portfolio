@@ -279,6 +279,9 @@ function initLanguage() {
   const langButtons = document.querySelectorAll('.lang-btn');
   const savedLang = localStorage.getItem('language') || 'en';
   
+  console.log('Language buttons found:', langButtons.length);
+  console.log('Saved language:', savedLang);
+  
   // Set active button
   langButtons.forEach(btn => {
     if (btn.dataset.lang === savedLang) {
@@ -293,15 +296,29 @@ function initLanguage() {
   
   // Listen for language change - reload page on change
   langButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
       const newLang = btn.dataset.lang;
-      if (newLang !== savedLang) {
-        localStorage.setItem('language', newLang);
+      console.log('Clicked language:', newLang);
+      
+      // Always save and reload
+      localStorage.setItem('language', newLang);
+      
+      // Update active state
+      langButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Reload page
+      setTimeout(() => {
         window.location.reload();
-      }
+      }, 100);
     });
   });
 }
 
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', initLanguage);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initLanguage);
+} else {
+  initLanguage();
+}
