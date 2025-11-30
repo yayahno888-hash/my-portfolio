@@ -589,7 +589,7 @@ function getTranslation(lang, key) {
 }
 
 // Apply translations to page
-function applyTranslations(lang) {
+function updateTranslations(lang) {
   document.querySelectorAll('[data-translate]').forEach(element => {
     const key = element.getAttribute('data-translate');
     const translation = getTranslation(lang, key);
@@ -600,51 +600,44 @@ function applyTranslations(lang) {
   document.documentElement.lang = lang;
 }
 
-// Initialize language system
-function initLanguage() {
-  const langButtons = document.querySelectorAll('.lang-btn');
-  const savedLang = localStorage.getItem('language') || 'en';
+// localStorage helpers
+function storeValue(key, value) {
+  localStorage.setItem(key, value);
+  console.log('Saved', key + ':', value);
+}
+
+function getStoredValue(key, defaultValue = 'en') {
+  return localStorage.getItem(key) || defaultValue;
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('Portfolio translations loaded');
   
-  console.log('Language buttons found:', langButtons.length);
+  const savedLang = getStoredValue('lang', 'en');
   console.log('Saved language:', savedLang);
   
-  // Set active button
-  langButtons.forEach(btn => {
-    if (btn.dataset.lang === savedLang) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-    }
-  });
+  // Apply translations
+  updateTranslations(savedLang);
   
-  // Apply saved language
-  applyTranslations(savedLang);
+  // Set dropdown value
+  const langSelect = document.getElementById('lang-select');
   
-  // Listen for language change - reload page on change
-  langButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const newLang = btn.dataset.lang;
-      console.log('Clicked language:', newLang);
-      
-      // Always save and reload
-      localStorage.setItem('language', newLang);
-      
-      // Update active state
-      langButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      
-      // Reload page
+  if (langSelect) {
+    langSelect.value = savedLang;
+    console.log('Select found, value set to:', savedLang);
+    
+    // Listen for language change
+    langSelect.addEventListener('change', (e) => {
+      const newLang = e.target.value;
+      console.log('Language changed to:', newLang);
+      storeValue('lang', newLang);
+      console.log('Reloading page...');
       setTimeout(() => {
         window.location.reload();
       }, 100);
     });
-  });
-}
-
-// Initialize on page load
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initLanguage);
-} else {
-  initLanguage();
-}
+  } else {
+    console.error('lang-select not found!');
+  }
+});
